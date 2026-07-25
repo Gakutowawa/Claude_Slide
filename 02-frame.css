@@ -1,0 +1,83 @@
+/* ══════════════════════════════════════════════════════════
+   02 │ SLIDE FRAME
+   全スライド共通の版面ルール
+     左上   … スライドタイトル
+     中央上 … 主メッセージ（大きめ・1スライド1メッセージ）
+     中央   … ボディ（12カラムグリッド）
+     左下   … 注釈・出典
+     右下   … ページ番号
+   ══════════════════════════════════════════════════════════ */
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  font-family:var(--font); color:var(--c-ink); background:#7E8C86;
+  padding:28px 0; -webkit-font-smoothing:antialiased;
+  font-feature-settings:"palt" 1;
+}
+
+/* ── スライド本体 ───────────────────────────────────── */
+.slide{
+  position:relative; width:var(--slide-w); height:var(--slide-h);
+  margin:0 auto 24px; padding:var(--pad-y) var(--pad-x) 50px;
+  background:var(--c-bg); display:flex; flex-direction:column;
+  box-shadow:0 2px 14px rgba(0,0,0,.22); overflow:hidden;
+}
+
+/* ── ヘッダー ───────────────────────────────────────── */
+.slide__head{ border-bottom:1px solid var(--c-rule); padding-bottom:12px; margin-bottom:18px; flex:none }
+
+.slide__title{
+  font-size:var(--fs-title); font-weight:700; color:var(--c-key-dark);
+  letter-spacing:.04em; display:flex; align-items:center; gap:9px;
+}
+/* 空・雨・傘のどこにいるかを示すインジケーター（この資料の背骨） */
+.phase{
+  font-size:var(--fs-note); font-weight:700; letter-spacing:.14em; color:#fff;
+  background:var(--c-key); padding:3px 9px; border-radius:var(--radius); flex:none;
+}
+.phase--sora{ background:var(--c-sora) }
+.phase--ame { background:var(--c-alert) }
+.phase--kasa{ background:var(--c-key) }
+.phase--base{ background:var(--c-ink-3) }
+
+.slide__msg{
+  margin-top:12px; padding-left:14px; border-left:5px solid var(--c-key);
+  font-size:var(--fs-msg); font-weight:700; line-height:1.45;
+}
+.slide__msg em{ font-style:normal; color:var(--c-key) }
+.slide__msg strong{ font-weight:900; box-shadow:inset 0 -8px 0 var(--c-key-tint) }
+
+/* ── ボディ：12カラムグリッド ───────────────────────── */
+.slide__body{
+  flex:1; min-height:0; display:grid; grid-template-columns:repeat(12,1fr);
+  grid-auto-rows:minmax(0,auto); gap:var(--gap); align-content:start;
+}
+.slide__body>*{ grid-column:span 12; min-width:0 }
+.w1{grid-column:span 1}  .w2{grid-column:span 2}  .w3{grid-column:span 3}
+.w4{grid-column:span 4}  .w5{grid-column:span 5}  .w6{grid-column:span 6}
+.w7{grid-column:span 7}  .w8{grid-column:span 8}  .w9{grid-column:span 9}
+.w10{grid-column:span 10}.w11{grid-column:span 11}.w12{grid-column:span 12}
+/* 残り高さいっぱいに伸ばしたい行に付ける */
+.slide__body--fill{ align-content:stretch }
+
+/* ── フッター ───────────────────────────────────────── */
+.slide__foot{
+  position:absolute; left:var(--pad-x); right:var(--pad-x); bottom:18px;
+  display:flex; justify-content:space-between; align-items:flex-end; gap:24px;
+  border-top:1px solid var(--c-rule); padding-top:7px;
+  font-size:var(--fs-note); color:var(--c-ink-3); line-height:1.6;
+}
+.pageno{ font-weight:700; color:var(--c-ink-2); font-variant-numeric:tabular-nums; flex:none }
+
+/* ── 表紙・中扉 ─────────────────────────────────────── */
+.slide--cover{ justify-content:center; padding:0 96px }
+.cover__rule{ width:64px; border-top:5px solid var(--c-key) }
+.cover__title{ font-size:38px; font-weight:900; line-height:1.4; margin:18px 0 12px }
+.cover__sub{ font-size:16px; color:var(--c-ink-2); line-height:1.7 }
+.cover__meta{ margin-top:44px; font-size:var(--fs-body); color:var(--c-ink-3);
+  border-top:1px solid var(--c-rule); padding-top:12px }
+
+.slide--divider{ justify-content:center; padding-left:96px; background:var(--c-key-dark) }
+.divider__no{ font-size:13px; letter-spacing:.3em; color:#8FBDA9; font-weight:700 }
+.divider__title{ font-size:34px; font-weight:900; color:#fff; margin-top:10px }
+.divider__sub{ font-size:15px; color:#B9D6C8; margin-top:10px; line-height:1.7 }

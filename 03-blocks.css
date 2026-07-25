@@ -1,0 +1,81 @@
+/* ══════════════════════════════════════════════════════════
+   03 │ BLOCKS  ── 文字ものの部品
+   ══════════════════════════════════════════════════════════ */
+
+/* ── カード：すべての図表の器 ───────────────────────── */
+.card{ background:var(--c-bg-2); border-top:3px solid var(--c-key);
+  padding:13px 15px; display:flex; flex-direction:column; min-width:0 }
+.card--plain{ background:#fff; border:1px solid var(--c-rule); border-top:3px solid var(--c-key) }
+.card--alert{ border-top-color:var(--c-alert) }
+.card--alert.card{ background:var(--c-alert-t) }
+.card--sora{ border-top-color:var(--c-sora) }
+.card--flat{ background:#fff; border:1px solid var(--c-rule); border-top-width:1px }
+
+.card__label{ font-size:var(--fs-small); font-weight:700; color:var(--c-key-dark);
+  letter-spacing:.06em; margin-bottom:7px }
+.card--alert .card__label{ color:var(--c-alert) }
+.card--sora .card__label{ color:var(--c-sora) }
+.card__lead{ font-size:var(--fs-lead); font-weight:700; line-height:1.5; margin-bottom:7px }
+.card__text{ font-size:var(--fs-body); line-height:1.75; color:var(--c-ink-2) }
+.card__text+.card__text{ margin-top:6px }
+
+/* ── 箇条書き ───────────────────────────────────────── */
+.list{ list-style:none; font-size:var(--fs-body); line-height:1.75; color:var(--c-ink-2) }
+.list li{ padding-left:15px; position:relative }
+.list li+li{ margin-top:3px }
+.list li::before{ content:""; position:absolute; left:2px; top:.75em; width:6px; height:1px; background:var(--c-key) }
+.list--alert li::before{ background:var(--c-alert) }
+.list--num{ counter-reset:n }
+.list--num li::before{ content:counter(n) "."; counter-increment:n; top:0; left:0;
+  width:auto; height:auto; background:none; font-size:11px; font-weight:700; color:var(--c-key) }
+
+/* ── 数値の見せ場 ───────────────────────────────────── */
+.stat{ display:flex; align-items:baseline; gap:5px; margin:2px 0 5px }
+.stat__num{ font-size:34px; font-weight:900; line-height:1; color:var(--c-key);
+  font-variant-numeric:tabular-nums }
+.stat__unit{ font-size:14px; font-weight:700; color:var(--c-key) }
+.stat--alert .stat__num,.stat--alert .stat__unit{ color:var(--c-alert) }
+.stat--sora .stat__num,.stat--sora .stat__unit{ color:var(--c-sora) }
+
+/* ── 汎用テーブル ───────────────────────────────────── */
+.tbl{ width:100%; border-collapse:collapse; font-size:var(--fs-small) }
+.tbl th,.tbl td{ border-bottom:1px solid var(--c-rule); padding:8px 9px; text-align:left; vertical-align:top; line-height:1.6 }
+.tbl thead th{ background:var(--c-key-dark); color:#fff; font-weight:700; border-bottom:none }
+.tbl tr.is-pick{ background:var(--c-key-tint) }
+.tbl tr.is-drop{ color:var(--c-ink-3) }
+
+/* ── ギャップ図（現状 ▶ あるべき姿） ────────────────── */
+.gap{ display:grid; grid-template-columns:1fr 40px 1fr; align-items:stretch }
+.gap__box{ border:1px solid var(--c-rule); background:#fff; padding:12px 14px }
+.gap__box--goal{ border-color:var(--c-key); background:var(--c-key-tint) }
+.gap__arrow{ display:flex; align-items:center; justify-content:center;
+  color:var(--c-alert); font-size:20px; font-weight:700 }
+
+/* ── ステップ（アクション手順） ─────────────────────── */
+.steps{ display:flex; gap:0; align-items:stretch }
+.step{ flex:1; background:var(--c-bg-2); border-top:3px solid var(--c-key);
+  padding:12px 14px; position:relative; margin-right:16px }
+.step:last-child{ margin-right:0 }
+.step::after{ content:""; position:absolute; right:-16px; top:calc(50% - 7px);
+  border-left:9px solid var(--c-key-mid); border-top:7px solid transparent; border-bottom:7px solid transparent }
+.step:last-child::after{ display:none }
+.step__no{ font-size:11px; font-weight:700; color:var(--c-key); letter-spacing:.1em }
+.step__title{ font-size:var(--fs-lead); font-weight:700; margin:4px 0 6px; line-height:1.45 }
+
+/* ── 結論・依頼事項 ─────────────────────────────────── */
+.ask{ border:2px solid var(--c-key); background:var(--c-key-tint); padding:15px 20px }
+.ask__label{ font-size:var(--fs-small); font-weight:700; color:var(--c-key-dark);
+  letter-spacing:.1em; margin-bottom:5px }
+.ask__text{ font-size:18px; font-weight:700; line-height:1.6 }
+
+/* ── 小物 ───────────────────────────────────────────── */
+.chip{ display:inline-block; font-size:11px; font-weight:700; padding:2px 8px;
+  border:1px solid var(--c-key); color:var(--c-key-dark); border-radius:var(--radius); margin:0 4px 4px 0 }
+.chip--fill{ background:var(--c-key); color:#fff }
+.chip--alert{ border-color:var(--c-alert); color:var(--c-alert) }
+.note-inline{ font-size:var(--fs-note); color:var(--c-ink-3); margin-top:6px; line-height:1.6 }
+.agenda{ font-size:16px; line-height:2.4; list-style:none }
+.agenda li{ display:flex; gap:14px; align-items:baseline; border-bottom:1px solid var(--c-rule); padding:4px 0 }
+.agenda .no{ font-weight:900; color:var(--c-key); font-size:13px; letter-spacing:.1em; width:52px; flex:none }
+.agenda .cur{ font-weight:700 }
+.agenda .pg{ margin-left:auto; font-size:12px; color:var(--c-ink-3) }
